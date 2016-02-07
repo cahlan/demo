@@ -1,0 +1,13 @@
+body {
+	box-sizing: border-box;
+}
+table, th, td {
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+th {
+	background-color: cornflowerblue;
+}
+th, td {
+	padding: 10px;
+}

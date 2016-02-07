@@ -1,0 +1,50 @@
+<a href="#home"><button>Home</button></a>
+<br>
+<div ng-repeat="exp in myExps">
+	<div ng-if="exp.id === thisExpId">
+		<table>
+			<tr>
+				<th><h3>Date</h3></th>
+				<th><h3>Merchant</h3></th>
+				<th><h3>Total Expense</h3></th>
+				<th><h3>Comments</h3></th>
+			</tr>
+			<tr>
+				<td><p>{{exp.date | date: "fullDate"}}</p></td>
+				<td><p>{{exp.merchant}}</p></td>
+				<td><p>${{exp.dollars}}.{{exp.cents}}</p></td>
+				<td><p>{{exp.comments}}</p></td>
+			</tr>
+		</table>
+		<br>
+		<fieldset>
+			<form>
+				<label>Merchant</label>
+				<input ng-model="thisExp.merchant" type="text" placeholder="Merchant" required>
+			</form>
+			<br>
+			<form>
+				<label>Total Amount (including tax)</label>
+				<input ng-model="thisExp.dollars" type="text" placeholder="dollars" required>.
+				<input ng-model="thisExp.cents" type="text" placeholder="cents" required>
+			</form>
+			<br>
+			<form>
+				<label>Month</label>
+					<select ng-model="thisExp.month" ng-init="thisExp.month = exp.month" ng-options="month for month in months"></select>
+				<label>Day</label>
+					<select ng-model="thisExp.day" ng-init="thisExp.day = exp.day" ng-options="day for day in days"></select>
+				<label>Year</label>
+					<select ng-model="thisExp.year" ng-init="thisExp.year = exp.year" ng-options="year for year in years"></select>
+			</form>
+			<br>
+			<form>
+				<label>Comments</label>
+				<input ng-model="thisExp.comments" type="text" placeholder="Comments..." required>
+			</form>
+			<br>
+			<a href="#home"><button ng-click="editExpense(exp, thisExp)">Save</button></a>
+			<a href="#home"><button ng-click="cancelAdd(thisExp)">Cancel</button></a>
+		</fieldset>
+	</div>
+</div>

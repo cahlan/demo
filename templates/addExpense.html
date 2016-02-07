@@ -1,0 +1,32 @@
+<a href="#home"><button>Home</button></a>
+<div>
+	<fieldset>
+		<form>
+			<label>Merchant</label>
+			<input ng-model="newExp.merchant" type="text" placeholder="Merchant" required>
+		</form>
+		<br>
+		<form>
+			<label>Total Amount (including tax)</label>
+			<input ng-model="newExp.dollars" type="text" placeholder="dollars" required>.
+			<input ng-model="newExp.cents" type="text" placeholder="cents" required>
+		</form>
+		<br>
+		<form>
+			<label>Month</label>
+				<select ng-model="newExp.month" ng-init="newExp.month = months[0]" ng-options="month for month in months"></select>
+			<label>Day</label>
+				<select ng-model="newExp.day" ng-init="newExp.day = days[0]" ng-options="day for day in days"></select>
+			<label>Year</label>
+				<select ng-model="newExp.year" ng-init="newExp.year = years[1]" ng-options="year for year in years"></select>
+		</form>
+		<br>
+		<form>
+			<label>Comments</label>
+			<input ng-model="newExp.comments" type="text" placeholder="Comments..." required>
+		</form>
+		<br>
+		<button type="submit" ng-click="addExpense(newExp)">Submit</button>
+		<a href="#home"><button ng-click="cancelAdd(newExp)">Cancel</button></a>
+	</fieldset>
+</div>

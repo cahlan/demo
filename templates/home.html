@@ -1,0 +1,46 @@
+<a href="#add"><button>Add Expense</button></a>
+<div ng-if="myExps[0]">
+	<div class="btn-group">
+    	<button type="radio" ng-model="allMyExps" ng-click="allMyExpsView('allExps')">All</button>
+		<button type="radio" ng-model="allMyExps" ng-click="allMyExpsView('newExps')">New</button>
+		<button type="radio" ng-model="allMyExps" ng-click="allMyExpsView('reimbursed')">Reimbursed</button>
+	</div>
+	<table>
+		<tr>
+			<th><h3>Date</h3></th>
+			<th><h3>Merchant</h3></th>
+			<th><h3>Total Expense</h3></th>
+			<th><h3>Comments</h3></th>
+			<th><h3>Status</h3></th>
+			<th> </th>
+		</tr>
+		<tr ng-if="allExps" ng-repeat="exp in myExps | orderBy: 'date'">
+			<td><p>{{exp.date | date: "fullDate"}}</p></td>
+			<td><p>{{exp.merchant}}</p></td>
+			<td><p>${{exp.dollars}}.{{exp.cents}}</p></td>
+			<td><p>{{exp.comments}}</p></td>
+			<td><p>{{exp.status}}</p></td>
+			<td><a href="#edit/{{exp.id}}"><button ng-disabled="exp.status === 'Reimbursed'">Edit</button></a> <button ng-disabled="exp.status === 'Reimbursed'" ng-click="cancelExpense(exp)">Cancel Expense</button> <button ng-disabled="exp.status === 'Reimbursed'" ng-click="reimburseExpense(exp)">Mark Reimbursed</button></td>
+		</tr>
+		<tr ng-if="newExps" ng-show="exp.status === 'New'" ng-repeat="exp in myExps | orderBy: 'date'">
+			<td><p>{{exp.date | date: "fullDate"}}</p></td>
+			<td><p>{{exp.merchant}}</p></td>
+			<td><p>${{exp.dollars}}.{{exp.cents}}</p></td>
+			<td><p>{{exp.comments}}</p></td>
+			<td><p>{{exp.status}}</p></td>
+			<td><a href="#edit/{{exp.id}}"><button ng-disabled="exp.status === 'Reimbursed'">Edit</button></a> <button ng-disabled="exp.status === 'Reimbursed'" ng-click="cancelExpense(exp)">Cancel Expense</button> <button ng-disabled="exp.status === 'Reimbursed'" ng-click="reimburseExpense(exp)">Mark Reimbursed</button>
+		</tr>
+		<tr ng-if="reimbursed" ng-show="exp.status === 'Reimbursed'" ng-repeat="exp in myExps | orderBy: 'date'">
+			<td><p>{{exp.date | date: "fullDate"}}</p></td>
+			<td><p>{{exp.merchant}}</p></td>
+			<td><p>${{exp.dollars}}.{{exp.cents}}</p></td>
+			<td><p>{{exp.comments}}</p></td>
+			<td><p>{{exp.status}}</p></td>
+			<td><a href="#edit/{{exp.id}}"><button ng-disabled="exp.status === 'Reimbursed'">Edit</button></a> <button ng-disabled="exp.status === 'Reimbursed'" ng-click="cancelExpense(exp)">Cancel Expense</button> <button ng-disabled="exp.status === 'Reimbursed'" ng-click="reimburseExpense(exp)">Mark Reimbursed</button>
+		</tr>
+	</table>
+</div>
+<div ng-if="!myExps[0]">
+	<h3>You have no Expenses</h3>
+</div>
+
